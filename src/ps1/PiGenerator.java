@@ -13,8 +13,14 @@ public class PiGenerator {
      * @return precision digits of pi in hexadecimal.
      */
     public static int[] computePiInHex(int precision) {
-        // TODO: Implement (Problem 1.d)
-        return new int[0];
+        if (precision < 0) {
+            return null;
+        }
+        int[] pi_arr = new int[precision];
+        for (int i = 0; i < pi_arr.length; i++) {
+            pi_arr[i] = piDigit(i+1);
+        }
+        return pi_arr;
     }
 
     /**
@@ -28,8 +34,10 @@ public class PiGenerator {
      * @return a^b mod m
      */
     public static int powerMod(int a, int b, int m) {
-        // TODO: Implement (Problem 1.b)
-        return -1;
+        if (a < 0 || b < 0 || m < 0) {
+            return -1;
+        }
+        return (int)(Math.pow(a,b) % m);
     }
     
     /**

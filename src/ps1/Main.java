@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class Main {
-    public static final int PI_PRECISION = 10000;
+    public static final int PI_PRECISION = 100;
 
     // List borrowed from: http://www.langmaker.com/wordlist/basiclex.htm
     // In general, you shouldn't hardcode big data like this. It's much more
