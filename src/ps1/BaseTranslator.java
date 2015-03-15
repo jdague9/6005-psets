@@ -34,7 +34,24 @@ public class BaseTranslator {
      */
     public static int[] convertBase(int[] digits, int baseA,
                                     int baseB, int precisionB) {
-        // TODO: Implement (Problem 2.b)
-        return null;
+        if (baseA < 2 || baseB < 2 || precisionB < 1) { return null; }
+        if (digits.length < 1) { return null; };
+        for (int num : digits) {
+            if (num < 0 || num >= baseA) { return null; }
+        }
+        int[] copy = digits.clone();
+        int[] output = new int[precisionB];
+        int carry;
+        int x;
+        for (int i = 0; i < precisionB; i++) {
+            carry = 0;
+            for (int j = copy.length - 1; j >= 0; j--) {
+                x = copy[j] * baseB + carry;
+                copy[j] = x % baseA;
+                carry = x / baseA;
+            }
+            output[i] = carry;
+        }
+        return output;
     }
 }
