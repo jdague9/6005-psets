@@ -20,7 +20,26 @@ public class WordFinder {
      */
     public static Map<String, Integer> getSubstrings(String haystack,
                                                      String[] needles) { 
-        // TODO: Implement (Problem 4.b)
-        return new HashMap<String, Integer>();
+        Map<String, Integer> output = new HashMap<String, Integer>();
+        char[] hs = haystack.toCharArray();
+        char[] test;
+        int k;
+        int l;
+        for (int i = 0; i < needles.length; i++) {
+            test = needles[i].toCharArray();
+            outerLoop:
+            for (int j = 0; j < hs.length - (test.length - 1); j++) {
+                k = 0;
+                l = j;
+                while (k < test.length) {
+                    if (test[k] != hs[l]) { continue outerLoop; }
+                    k++;
+                    l++;
+                }
+                output.put(needles[i], j);
+                break;
+            }
+        }
+        return output;
     }
 }
