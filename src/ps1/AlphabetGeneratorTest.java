@@ -19,6 +19,23 @@ public class AlphabetGeneratorTest {
                 AlphabetGenerator.generateFrequencyAlphabet(
                         10, trainingData));
     }
-
+    @Test
+    public void emptyGenerateFrequencyAlphabetTest() {
+        String[] trainingData = {"aa", "bbc"};
+        char[] expectedOutput = null;
+        assertArrayEquals(expectedOutput,
+                AlphabetGenerator.generateFrequencyAlphabet(
+                        -1, trainingData));
+    }
+    @Test
+    public void nonAlphaGenerateFrequencyAlphabetTest() {
+        String[] trainingData = {"1a(*&97/?a", "bb123c4"};
+        char[] expectedOutput = {'a', 'a', 'a', 'a',
+                                 'b', 'b', 'b', 'b',
+                                 'c', 'c'};
+        assertArrayEquals(expectedOutput,
+                AlphabetGenerator.generateFrequencyAlphabet(
+                        10, trainingData));
+    }
     // TODO: Write more tests (Problem 5.a)
 }

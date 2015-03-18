@@ -52,7 +52,35 @@ public class AlphabetGenerator {
      */
     public static char[] generateFrequencyAlphabet(int base,
                                                    String[] trainingData) {
-        // TODO: Implement (Problem 5.b)
-        return null;
+        if (base < 0) {return null;}
+        int[] counts = new int[26];
+        char[] chars;
+        char[] output = new char[base];
+        float total = 0;
+        String lower;
+        for (String s : trainingData) {
+            lower = s.toLowerCase();
+            chars = lower.toCharArray();
+            for (char c : chars) {
+                if (Character.isLetter(c)) {
+                    counts[c-97]++;
+                    total++;
+                }
+            }
+        }
+        float accum = 0;
+        float prob;
+        float cdf = 0;
+        int start;
+        for (int i = 0; i < 26; i++) {
+            start = (int)cdf;
+            prob = counts[i] / total;
+            accum += prob;
+            cdf = accum * base;
+            for (int j = start; j < cdf && j < base; j++) {
+                output[j] = (char)(i + 97);
+            }
+        }
+        return output;
     }
 }
